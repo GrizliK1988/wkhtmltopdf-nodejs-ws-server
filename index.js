@@ -8,7 +8,7 @@ var _ = require('underscore'),
     fs = require('fs');
 
 /**
- * Web socket server that handles pdf create/delete requests.
+ * Web socket server that handles pdf create/delete requests that accepts wkhtmltopdf-nodejs-entity requests.
  *
  * There are events that can be used for customizing server behavior:
  *
@@ -38,29 +38,29 @@ function WsServer(port, displayServerResolution) {
 
 WsServer.prototype = _.extend({
     /**
-     * Starts websocket server
+     * Starts websocket server at *:port. Port is provided to constructor.
      */
     start: function() {
         http.listen(this.port, function(){
             console.log('listening on *:' + this.port);
         }.bind(this));
 
-        io.on('connection', this.onSocketConnection.bind(this));
+        io.on('connection', this._onSocketConnection.bind(this));
     },
 
     /**
      * @param socket
      */
-    onSocketConnection: function(socket) {
+    _onSocketConnection: function(socket) {
         this.socket = socket;
-        socket.on('create', this.createPdf.bind(this));
-        socket.on('delete', this.deletePdf.bind(this));
+        socket.on('create', this._createPdf.bind(this));
+        socket.on('delete', this._deletePdf.bind(this));
     },
 
     /**
      * @param options
      */
-    createPdf: function(options) {
+    _createPdf: function(options) {
         var request = new wkhtmlToPdf.CreateRequest(options),
             pdfCommandParts = request.toString().split(' ').filter(function(value) {
                 return value !== '';
@@ -100,7 +100,11 @@ WsServer.prototype = _.extend({
         }.bind(this));
     },
 
-    deletePdf: function(handle) {
+    /**
+     * @param handle
+     * @private
+     */
+    _deletePdf: function(handle) {
         this.trigger('pdf:delete:start', handle);
 
         fs.unlink('./result_' + handle + '.pdf', function(error) {
