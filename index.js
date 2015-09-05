@@ -2,7 +2,8 @@ var wkhtmlToPdf = require('wkhtmltopdf-nodejs-options-wrapper'),
     app = require('express')(),
     http = require('http').Server(app),
     io = require('socket.io')(http),
-    PdfApi = require('wkhtmltopdf-nodejs-pdfapi');
+    PdfApi = require('wkhtmltopdf-nodejs-pdfapi'),
+    path = require('path');
 
 /**
  * Web socket server that handles pdf create/delete requests that accepts wkhtmltopdf-nodejs-entity requests.
@@ -25,6 +26,13 @@ WsPdfServer.prototype = {
         http.listen(this.port, function(){
             console.log('listening on *:' + this.port);
         }.bind(this));
+
+        app.get('/:name.pdf', function(req, res) {
+            var options = {
+                root: path.resolve(__dirname, '../..')
+            };
+            res.sendFile(req.params.name + '.pdf', options);
+        });
 
         io.on('connection', this._onSocketConnection.bind(this));
     },
