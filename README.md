@@ -25,8 +25,8 @@ After this request server will respond:
 
 To run server you need:
 
-- **wkhtmltopdf** with it's dependencies,
-- **nodejs**.
+- **wkhtmltopdf** with it's dependencies
+- **nodejs**
 
 If you are going to use **wkhtmltopdf-nodejs-server** on a machine with operating system without graphical environment, 
 then you will need to install display server, for example - **xvfb**, for wkhtmltopdf.
@@ -42,7 +42,7 @@ Run **npm install wkhtmltopdf-nodejs-server** command.
 Server can be created and started like follows:
 
 ```
-var WsServer = require('wkhtmltopdf-nodejs-server');
+var WsServer = require('wkhtmltopdf-nodejs-ws-server');
 
 var server = new WsServer(3000); // <- server will listen requests on *:3000
 
