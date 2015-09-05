@@ -1,8 +1,8 @@
-var wkhtmlToPdf = require('wkhtmltopdf-nodejs-entity'),
+var wkhtmlToPdf = require('wkhtmltopdf-nodejs-options-wrapper'),
     app = require('express')(),
     http = require('http').Server(app),
     io = require('socket.io')(http),
-    PdfApi = require('./pdfApi');
+    PdfApi = require('wkhtmltopdf-nodejs-pdfapi');
 
 /**
  * Web socket server that handles pdf create/delete requests that accepts wkhtmltopdf-nodejs-entity requests.

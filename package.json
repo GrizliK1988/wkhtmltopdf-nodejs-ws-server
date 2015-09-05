@@ -1,6 +1,6 @@
 {
-  "name": "wkhtmltopdf-nodejs-server",
-  "version": "0.0.1",
+  "name": "wkhtmltopdf-nodejs-ws-server",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -8,19 +8,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/GrizliK1988/wkhtmltopdf-nodejs-server.git"
+    "url": "git+https://github.com/GrizliK1988/wkhtmltopdf-nodejs-ws-server.git"
   },
   "keywords": [
-    "wkhtmltopdf"
+    "wkhtmltopdf",
+    "nodejs",
+    "websocket"
   ],
   "author": "Dmitry Grachikov",
-  "license": "MIT",
+  "license": "ISC",
   "bugs": {
-    "url": "https://github.com/GrizliK1988/wkhtmltopdf-nodejs-server/issues"
+    "url": "https://github.com/GrizliK1988/wkhtmltopdf-nodejs-ws-server/issues"
   },
-  "homepage": "https://github.com/GrizliK1988/wkhtmltopdf-nodejs-server#readme",
+  "homepage": "https://github.com/GrizliK1988/wkhtmltopdf-nodejs-ws-server#readme",
   "devDependencies": {
-    "istanbul": "^0.3.18",
+    "istanbul": "^0.3.19",
     "jasmine": "^2.3.2",
     "jasmine-node": "^1.14.5",
     "mockery": "^1.4.0"
@@ -30,6 +32,7 @@
     "promise": "^7.0.4",
     "socket.io": "^1.3.6",
     "underscore": "^1.8.3",
-    "wkhtmltopdf-nodejs-entity": "^1.0.0"
+    "wkhtmltopdf-nodejs-options-wrapper": "^1.0.4",
+    "wkhtmltopdf-nodejs-pdfapi": "^1.0.3"
   }
 }
