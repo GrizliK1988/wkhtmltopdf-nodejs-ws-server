@@ -23,7 +23,11 @@ describe('web socket server tests', function() {
             warnOnUnregistered: false
         });
 
-        mockery.registerMock('express', function(){});
+        mockery.registerMock('express', function(){
+            return {
+                get: function() {}
+            };
+        });
         mockery.registerMock('http', {
             Server: function() {
                 return {
